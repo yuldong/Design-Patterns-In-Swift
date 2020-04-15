@@ -17,18 +17,18 @@ print("您好！")
 
 ## 目录
 
-| [行为型模式](#行为型模式)                                    | [创建型模式](#创建型模式)                                 | [结构型模式](#结构型模式structural)                          |
-| ------------------------------------------------------------ | --------------------------------------------------------- | ------------------------------------------------------------ |
-| [🐝 责任链 Chain Of Responsibility](#-责任链chain-of-responsibility) | [🌰 抽象工厂 Abstract Factory](#-抽象工厂abstract-factory) | [🔌 适配器 Adapter](#-适配器adapter)                          |
-| [👫 命令 Command](#-命令command)                              | [👷 生成器 Builder](#-生成器builder)                       | [🌉 桥接 Bridge](#-桥接bridge)                                |
-| [🎶 解释器 Interpreter](#-解释器interpreter)                  | [🏭 工厂方法 Factory Method](#-工厂方法factory-method)     | [🌿 组合 Composite](#-组合composite)                          |
-| [🍫 迭代器 Iterator](#-迭代器iterator)                        | [🃏 原型 Prototype](#-原型prototype)                       | [🍧 修饰 Decorator](#-修饰decorator)                          |
-| [💐 中介者 Mediator](#-中介者mediator)                        | [💍 单例 Singleton](#-单例singleton)                       | [🎁 外观 Façade](#-外观facade)                                |
-| [💾 备忘录 Memento](#-备忘录memento)                          |                                                           | [🍃 享元 Flyweight](#-享元flyweight)                          |
-| [👓 观察者 Observer](#-观察者observer)                        |                                                           | [☔ 保护代理 Protection Proxy](#-保护代理模式protection-proxy) |
-| [🐉 状态 State](#-状态state)                                  |                                                           | [🍬 虚拟代理 Virtual Proxy](#-虚拟代理virtual-proxy)          |
-| [💡 策略 Strategy](#-策略strategy)                            |                                                           |                                                              |
-| [🏃 访问者 Visitor](#-访问者visitor)                          |                                                           |                                                              |
+| [行为型模式](#行为型模式)                                           | [创建型模式](#创建型模式)                                 | [结构型模式](#结构型模式structural)                           |
+| ------------------------------------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------- |
+| [🐝 责任链 Chain Of Responsibility](#-责任链chain-of-responsibility) | [🌰 抽象工厂 Abstract Factory](#-抽象工厂abstract-factory) | [🔌 适配器 Adapter](#-适配器adapter)                           |
+| [👫 命令 Command](#-命令command)                                     | [👷 生成器 Builder](#-生成器builder)                       | [🌉 桥接 Bridge](#-桥接bridge)                                 |
+| [🎶 解释器 Interpreter](#-解释器interpreter)                         | [🏭 工厂方法 Factory Method](#-工厂方法factory-method)     | [🌿 组合 Composite](#-组合composite)                           |
+| [🍫 迭代器 Iterator](#-迭代器iterator)                               | [🃏 原型 Prototype](#-原型prototype)                       | [🍧 修饰 Decorator](#-修饰decorator)                           |
+| [💐 中介者 Mediator](#-中介者mediator)                               | [💍 单例 Singleton](#-单例singleton)                       | [🎁 外观 Façade](#-外观facade)                                 |
+| [💾 备忘录 Memento](#-备忘录memento)                                 |                                                           | [🍃 享元 Flyweight](#-享元flyweight)                           |
+| [👓 观察者 Observer](#-观察者observer)                               |                                                           | [☔ 保护代理 Protection Proxy](#-保护代理模式protection-proxy) |
+| [🐉 状态 State](#-状态state)                                         |                                                           | [🍬 虚拟代理 Virtual Proxy](#-虚拟代理virtual-proxy)           |
+| [💡 策略 Strategy](#-策略strategy)                                   |                                                           |                                                               |
+| [🏃 访问者 Visitor](#-访问者visitor)                                 |                                                           |                                                               |
 
 
  行为型模式
@@ -45,6 +45,9 @@ print("您好！")
 ------------------------------
 
 责任链模式在面向对象程式设计里是一种软件设计模式，它包含了一些命令对象和一系列的处理对象。每一个处理对象决定它能处理哪些命令对象，它也知道如何将它不能处理的命令对象传递给该链中的下一个处理对象。
+
+使多个对象都有机会处理请求，从而避免请求的发送者和接受者之间的耦合关系。
+将这些对象连成一条链，并沿着这条链传递请求，直到有一个对象处理为止。
 
 ### 示例：
 
@@ -147,6 +150,8 @@ atm.withdraw(amount: 100) // Can withdraw - 1x100
  * 重复多次
  * 取消（如果该对象有实现的话）
  * 取消后又再重做
+
+将请求(action)封装为一个对象，从而可用不同的请求来对客户进行参数化，对请求排队或记录请求日志，以及支持可撤销的操作。
  ### 示例：
 
 ```swift
@@ -304,6 +309,8 @@ var result = expression.evaluate(context)
  ---------------
 
  迭代器模式可以让用户通过特定的接口巡访容器中的每一个元素而不用了解底层的实现。
+
+ 提供一种方法访问容器中的各个元素，而不是暴露(稳定)该容器的内部表示。
  
  ### 示例：
 
@@ -352,6 +359,15 @@ for novella in greatNovellas {
  ---------------
 
  用一个中介者对象封装一系列的对象交互，中介者使各对象不需要显示地相互作用，从而使耦合松散，而且可以独立地改变它们之间的交互。
+
+ 适用性：
+ > 对象之间存在复杂的引用关系
+
+ > 对象定义良好但通信复杂
+
+ > 对象引用其他很多对象，导致难以复用该对象
+
+ > 想通过一个中间类来封装多个类的行为，而不想生成太多的子类
 
  ### 示例：
 
@@ -566,6 +582,11 @@ testChambers.testChamberNumber += 1
 在状态模式中，对象的行为是基于它的内部状态而改变的。
 这个模式允许某个类对象在运行时发生改变。
 
+适用性：
+> 一个对象的行为取决于它的状态，并且它必须在运行时刻根据状态改变它的行为
+
+> 代码中包含大量与对象状态有关的条件语句
+
 ### 示例：
 
 ```swift
@@ -629,6 +650,8 @@ userContext.changeStateToUnauthorized()
 * 定义了一族算法（业务规则）；
 * 封装了每个算法；
 * 这族的算法可互换代替（interchangeable）。
+
+把对象本身和运算规则区分开来。
 
 ### 示例：
 
@@ -886,6 +909,8 @@ let deathStar = DeathStar(builder:empire)
 -----------------------
 
 定义一个创建对象的接口，但让实现这个接口的类来决定实例化哪个类。工厂方法让类的实例化推迟到子类中进行。
+
+问题： 工厂类的职责过重，违背开闭原则。
 
 ### 示例：
 

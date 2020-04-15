@@ -460,6 +460,7 @@ if let memento = CheckPoint.restore(saveName: "gameState1") as? Memento {
 
 ### 示例：
 */
+
 protocol PropertyObserver : class {
     func willChange(propertyName: String, newPropertyValue: Any?)
     func didChange(propertyName: String, oldPropertyValue: Any?)
